@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="bottom"
-            android:hint="请输入用户名/手机/邮箱"/>
+            android:hint="请输入身份证号"/>
 
     </LinearLayout>
 
@@ -82,13 +82,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp">
 
-        <TextView
+        <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="找回密码"
             android:textSize="15sp"
-            android:textColor="#5CACEE"/>
+            android:textColor="#5CACEE"/>-->
 
         <TextView
             android:id="@+id/main_register_button"
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20dp"
-            android:text="免费注册"
+            android:text="注  册"
             android:textSize="15sp"
             android:textColor="#5CACEE"/>
 

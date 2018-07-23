@@ -14,6 +14,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText mLoginText;
     private EditText mPasswordText;
+    private EditText mNameText;
+    private EditText mGenderText;
     private Button mResiterButton;
 
     public static void startActivity(Context context) {
@@ -32,12 +34,15 @@ public class RegisterActivity extends AppCompatActivity {
     private void initView() {
         mLoginText = findViewById(R.id.register_login_text);
         mPasswordText = findViewById(R.id.register_password_text);
+        mNameText = findViewById(R.id.register_name_text);
+        mGenderText = findViewById(R.id.register_gender_text);
+
         mResiterButton = findViewById(R.id.register_button);
 
         mResiterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mLoginText.getText().length() > 0 && mPasswordText.getText().length() > 0) {
+                if (mLoginText.getText().length() > 0 && mPasswordText.getText().length() > 0 && mNameText.getText().length() > 0 && mGenderText.getText().length() > 0) {
                     MainActivity.mLogin = mLoginText.getText().toString();
                     MainActivity.mPassword = mPasswordText.getText().toString();
                     finish();
