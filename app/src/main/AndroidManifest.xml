@@ -16,6 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--<activity android:name=".adapter.GridViewAdapter" />
+        <activity android:name=".adapter.RecyclerViewAdapter" />
+        <activity android:name=".mode.DetailInfo" />
+        <activity android:name=".mode.ImageInfo" />
+        <activity android:name=".mode.MenuInfo" />
+        <activity android:name=".tool.NetManager" />-->
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".IndexActivity" />
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>
