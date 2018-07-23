@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.wang.livedetectionapp">
 
@@ -7,5 +8,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" />
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".adapter.GridViewAdapter" />
+        <activity android:name=".adapter.RecyclerViewAdapter" />
+        <activity android:name=".mode.DetailInfo" />
+        <activity android:name=".mode.ImageInfo" />
+        <activity android:name=".mode.MenuInfo" />
+        <activity android:name=".tool.NetManager" />
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".IndexActivity" />
+        <activity android:name=".RegisterActivity"></activity>
+    </application>
+
 </manifest>
