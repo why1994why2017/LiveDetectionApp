@@ -7,6 +7,7 @@
     tools:context=".MyselfActivity">
 
     <LinearLayout
+        android:id="@+id/self_information_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
@@ -17,18 +18,25 @@
             android:layout_marginStart="10dp"
             android:src="@drawable/person_info" />
 
-        <Button
-            android:id="@+id/self_information_button"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_gravity="bottom"
+            android:gravity="center"
             android:text="个人信息"
-            android:textSize="20dp"
+            android:textSize="30dp"
             android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/rightarrow"/>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/self_task_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp">
@@ -39,18 +47,25 @@
             android:layout_marginStart="10dp"
             android:src="@drawable/account" />
 
-        <Button
-            android:id="@+id/self_task_button"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_gravity="bottom"
+            android:gravity="center"
             android:text="任务结算明细"
-            android:textSize="20dp"
+            android:textSize="30dp"
             android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/rightarrow"/>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/self_knowledge_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp">
@@ -61,14 +76,20 @@
             android:layout_marginStart="10dp"
             android:src="@drawable/knowledge" />
 
-        <Button
-            android:id="@+id/self_knowledge_button"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_gravity="bottom"
+            android:gravity="center"
             android:text="医药保健知识推送"
-            android:textSize="20dp"
+            android:textSize="30dp"
             android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/rightarrow"/>
 
     </LinearLayout>
     

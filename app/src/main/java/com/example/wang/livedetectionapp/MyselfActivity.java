@@ -5,12 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MyselfActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mInformate;
-    private Button mAccounts;
-    private Button mKnowledge;
+    private LinearLayout mInformate;
+    private LinearLayout mAccounts;
+    private LinearLayout mKnowledge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +23,20 @@ public class MyselfActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initView() {
-        mInformate = findViewById(R.id.self_information_button);
-        mAccounts = findViewById(R.id.self_task_button);
-        mKnowledge = findViewById(R.id.self_knowledge_button);
+        mInformate = findViewById(R.id.self_information_text);
+        mInformate.setOnClickListener(this);
+
+        mAccounts = findViewById(R.id.self_task_text);
+        mAccounts.setOnClickListener(this);
+
+        mKnowledge = findViewById(R.id.self_knowledge_text);
+        mKnowledge.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.self_information_button:
+            case R.id.self_information_text:
                 InformationActivity.startActivity(this);
                 break;
 
