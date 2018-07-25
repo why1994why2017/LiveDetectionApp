@@ -39,6 +39,9 @@ public class MyselfActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.self_information_text:
                 InformationActivity.startActivity(this);
                 break;
+            case R.id.self_list_text:
+                IndexActivity.startActivity(this);
+                break;
             default:
                 break;
         }
