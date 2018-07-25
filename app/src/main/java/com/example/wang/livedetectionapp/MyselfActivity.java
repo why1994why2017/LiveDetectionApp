@@ -39,7 +39,8 @@ public class MyselfActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.self_information_text:
                 InformationActivity.startActivity(this);
                 break;
-
+            default:
+                break;
         }
     }
 }

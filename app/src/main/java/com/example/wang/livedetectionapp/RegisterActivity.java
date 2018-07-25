@@ -91,6 +91,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 }else {
                     openAlbum();
                 }
+                break;
             default:
                 break;
         }
