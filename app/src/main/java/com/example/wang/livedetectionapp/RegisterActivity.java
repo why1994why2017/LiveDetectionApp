@@ -84,6 +84,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 if (mLoginText.getText().length() > 0 && mPasswordText.getText().length() > 0 && mNameText.getText().length() > 0 && mGenderText.getText().length() > 0) {
                     MainActivity.mLogin = mLoginText.getText().toString();
                     MainActivity.mPassword = mPasswordText.getText().toString();
+                    MainActivity.mName = mNameText.getText().toString();
+                    MainActivity.mGender = mGenderText.getText().toString();
 
                     finish();
                 }

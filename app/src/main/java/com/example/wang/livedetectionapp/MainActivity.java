@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static String mLogin;
     public static String mPassword;
+    public static String mName;
+    public static String mGender;
 
     private EditText mLoginTest;
     private EditText mPasswordTest;
@@ -61,6 +63,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (mLogin.equals(mLoginTest.getText().toString()) && mPassword.equals(mPasswordTest.getText().toString())) {
                     SQLiteDatabase db = dbHelper.getWritableDatabase();
                     ContentValues values = new ContentValues();
+                    values.put("loginnum", mLogin);
+                    values.put("passwords", mPassword);
+                    values.put("name", mName);
+                    values.put("gender", mGender);
                     values.put("templogin", mLoginTest.getText().toString());
                     db.insert("info", null, values);
                     values.clear();
