@@ -30,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public static final int GET_IMAGE = 1;
 
+
+
     private EditText mLoginText;
     private EditText mPasswordText;
     private EditText mNameText;
@@ -82,6 +84,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 if (mLoginText.getText().length() > 0 && mPasswordText.getText().length() > 0 && mNameText.getText().length() > 0 && mGenderText.getText().length() > 0) {
                     MainActivity.mLogin = mLoginText.getText().toString();
                     MainActivity.mPassword = mPasswordText.getText().toString();
+
                     finish();
                 }
                 break;

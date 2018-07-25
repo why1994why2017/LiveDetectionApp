@@ -1,7 +1,9 @@
 package com.example.wang.livedetectionapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,8 +23,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mLoginButton;
     private TextView mRegisterButton;
 
+    private MyDatabaseHelper dbHelper;
+
     public static void startActivity(Context context) {
-        Intent intent = new Intent(context, RegisterActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
 
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         initView();
+
+        dbHelper = new MyDatabaseHelper(this, "InfoStore.db", null, 2);
     }
 
     private void initView() {
@@ -53,6 +59,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     break;
                 }
                 if (mLogin.equals(mLoginTest.getText().toString()) && mPassword.equals(mPasswordTest.getText().toString())) {
+                    SQLiteDatabase db = dbHelper.getWritableDatabase();
+                    ContentValues values = new ContentValues();
+                    values.put("templogin", mLoginTest.getText().toString());
+                    db.insert("info", null, values);
+                    values.clear();
+                    String sql = "update info set id=1 where id<>1";
+                    db.execSQL(sql);
                     IndexActivity.startActivity(this);
                 }
                 break;
