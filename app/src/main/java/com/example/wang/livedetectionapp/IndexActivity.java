@@ -21,14 +21,10 @@ import java.util.List;
 
 public class IndexActivity extends AppCompatActivity {
 
-    private GridView mGridView;
     private RecyclerView mRecyclerView;
-
-    private List<ImageInfo> mImageInfos;
-    private List<MenuInfo> mMenuInfos;
-
-    private GridViewAdapter mGridViewAdapter;
     private RecyclerViewAdapter mRecyclerViewAdapter;
+
+    private List<MenuInfo> mMenuInfos;
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, IndexActivity.class);
@@ -40,98 +36,38 @@ public class IndexActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
 
-        initImageInfo();
         initMenuInfo();
         initView();
-
-    }
-
-    private void initImageInfo() {
-        mImageInfos = new ArrayList<>();
-
-        ImageInfo imageInfo = new ImageInfo();
-        imageInfo.setDrawable(R.drawable.baseball);
-        imageInfo.setName("棒球");
-        mImageInfos.add(imageInfo);
-
-        imageInfo = new ImageInfo();
-        imageInfo.setDrawable(R.drawable.book);
-        imageInfo.setName("图书");
-        mImageInfos.add(imageInfo);
-
-        imageInfo = new ImageInfo();
-        imageInfo.setDrawable(R.drawable.coffee);
-        imageInfo.setName("咖啡");
-        mImageInfos.add(imageInfo);
-
-        imageInfo = new ImageInfo();
-        imageInfo.setDrawable(R.drawable.diamond);
-        imageInfo.setName("钻石");
-        mImageInfos.add(imageInfo);
-
-        imageInfo = new ImageInfo();
-        imageInfo.setDrawable(R.drawable.hamburger);
-        imageInfo.setName("汉堡");
-        mImageInfos.add(imageInfo);
-
-        imageInfo = new ImageInfo();
-        imageInfo.setDrawable(R.drawable.instruments);
-        imageInfo.setName("乐器");
-        mImageInfos.add(imageInfo);
-
-        imageInfo = new ImageInfo();
-        imageInfo.setDrawable(R.drawable.phone);
-        imageInfo.setName("手机");
-        mImageInfos.add(imageInfo);
-
-        imageInfo = new ImageInfo();
-        imageInfo.setDrawable(R.drawable.taxi);
-        imageInfo.setName("出租");
-        mImageInfos.add(imageInfo);
+        initData();
 
     }
 
     private void initMenuInfo() {
         mMenuInfos = new ArrayList<>();
-        MenuAsyncTask menuAsyncTask = new MenuAsyncTask();
-        menuAsyncTask.execute();
     }
 
     private void initView() {
-        mGridView = findViewById(R.id.menu_grid_view);
-        mGridViewAdapter = new GridViewAdapter(this, R.layout.item_menu_grid_view, mImageInfos);
-        mGridView.setAdapter(mGridViewAdapter);
+        mRecyclerView = findViewById(R.id.menu_recycler_view);
+
     }
 
-    private class MenuAsyncTask extends AsyncTask<Void, Void, String> {
+    private void initData() {
+        mMenuInfos = new ArrayList<>();
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
+        MenuInfo menuInfo1 = new MenuInfo(1, false);
+        mMenuInfos.add(menuInfo1);
 
-        @Override
-        protected String doInBackground(Void... voids) {
-            return NetManager.linkHttp("http://www.imooc.com/api/shopping?type=11");
-        }
+        MenuInfo menuInfo2 = new MenuInfo(2, false);
+        mMenuInfos.add(menuInfo2);
 
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            if (s != null) {
-                mMenuInfos = NetManager.parseIndexGson(s);
-            }
-            mRecyclerView = findViewById(R.id.menu_recycler_view);
-            mRecyclerViewAdapter = new RecyclerViewAdapter(IndexActivity.this, R.layout.item_menu_recycler_view, mMenuInfos);
-            mRecyclerViewAdapter.setOnItemClickListen(new RecyclerViewAdapter.IOnItemClickListen() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    DetailActivity.startActivity(IndexActivity.this, "http://www.imooc.com/api/shopping?type=12");
-                }
-            });
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(IndexActivity.this));
-            mRecyclerView.setAdapter(mRecyclerViewAdapter);
-        }
+        MenuInfo menuInfo3 = new MenuInfo(3, true);
+        mMenuInfos.add(menuInfo3);
+
+        MenuInfo menuInfo4 = new MenuInfo(4, true);
+        mMenuInfos.add(menuInfo4);
+
+        mRecyclerViewAdapter = new RecyclerViewAdapter(this, mMenuInfos);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mRecyclerViewAdapter);
     }
-
 }

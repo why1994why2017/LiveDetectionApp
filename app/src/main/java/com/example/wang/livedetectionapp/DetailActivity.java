@@ -104,9 +104,7 @@ public class DetailActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(mDetailInfo.getImg())
                 .into(mImageView);
-        mOriginalPriceText.setText(String.format(getString(R.string.price), mDetailInfo.getOriginalprice()));
-        mTPriceText.setText(String.format(getString(R.string.tprice), mDetailInfo.gettPrice()));
-        mPriceText.setText(String.format(getString(R.string.gprice), mDetailInfo.getPrice()));
+
         mDescriptionText.setText(mDetailInfo.getDescription());
     }
 

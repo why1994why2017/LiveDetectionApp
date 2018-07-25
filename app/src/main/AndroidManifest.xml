@@ -19,11 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".FirstPageActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
         <!--
@@ -35,7 +31,13 @@
         <activity android:name=".tool.NetManager" />
         -->
         <activity android:name=".DetailActivity" />
-        <activity android:name=".IndexActivity" />
+        <activity android:name=".IndexActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MyselfActivity" />
         <activity android:name=".InformationActivity" />

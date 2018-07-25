@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">LiveDetectionApp</string>
-    <string name="price">￥%1$s</string>
-    <string name="tprice">团购价: ￥%1$s</string>
-    <string name="gprice">￥%1$s拿下</string>
-    <string name="action">新用户一元购</string>
-    <string name="count">已售：%1$d</string>
-    <string name="title_activity_login">Sign in</string>
 
+    <string name="task_title">任务%1$d标题</string>
+    <string name="status_completed">（已完成）</string>
+    <string name="status_false">（未完成）</string>
+    
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -16,7 +14,5 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
 </resources>

@@ -4,35 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
-    >
-    <!--tools:context=".MainActivity"-->
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#20B2AA">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="用户注册"
-            android:textSize="30sp"
-            android:textColor="#ffffff"/>
-    </LinearLayout>-->
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
-
-        <!--<ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/login" />-->
 
         <TextView
             android:id="@+id/fragment_time_text"
@@ -53,12 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
 
-        <!--<ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/password" />-->
-
         <TextView
             android:id="@+id/fragment_location_text"
             android:layout_marginStart="10dp"
@@ -77,12 +48,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
-
-        <!--<ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/name" />-->
 
         <TextView
             android:id="@+id/fragment_describe_text"
@@ -119,12 +84,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
-
-        <!--<ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/gender" />-->
 
         <EditText
             android:id="@+id/fragment_remark_text"

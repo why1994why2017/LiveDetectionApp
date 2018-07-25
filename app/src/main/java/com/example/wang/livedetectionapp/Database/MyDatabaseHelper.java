@@ -1,4 +1,4 @@
-package com.example.wang.livedetectionapp;
+package com.example.wang.livedetectionapp.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

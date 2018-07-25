@@ -1,57 +1,28 @@
 package com.example.wang.livedetectionapp.mode;
 
 public class MenuInfo {
-    private String img;
-    private String name;
-    private String description;
-    private String price;
-    private int count;
 
-    public String getImg() {
-        return img;
+    private int mTitle;
+    private boolean mStatus;
+
+    public MenuInfo(int title, boolean status) {
+        mTitle = title;
+        mStatus = status;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public int getTitle() {
+        return mTitle;
     }
 
-    public String getImage() {
-        return img;
+    public void setTitle(int title) {
+        this.mTitle = title;
     }
 
-    public void setImage(String image) {
-        this.img = image;
+    public boolean isStatus() {
+        return mStatus;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
+    public void setStatus(boolean status) {
+        this.mStatus = status;
     }
 }

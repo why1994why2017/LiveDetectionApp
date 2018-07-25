@@ -23,7 +23,6 @@
             android:id="@+id/detail_original_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/price"
             android:textSize="20sp"
             android:textColor="#00c5cd"
             tools:text="￥27.8"/>
@@ -34,7 +33,6 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/detail_original_price"
             android:layout_marginStart="30dp"
-            android:text="@string/tprice"
             android:textSize="20sp"
             android:textColor="#949494"
             tools:text="团购价: ￥22"/>
@@ -47,7 +45,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
             android:background="#eead0e"
-            android:text="@string/gprice"
             android:textSize="20sp"
             android:textColor="#ffffff"
             tools:text="￥19.9拿下"  />
