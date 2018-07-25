@@ -1,5 +1,6 @@
 package com.example.wang.livedetectionapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText mPasswordTest;
     private Button mLoginButton;
     private TextView mRegisterButton;
+
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, RegisterActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
