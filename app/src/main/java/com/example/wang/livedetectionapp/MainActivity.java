@@ -1,21 +1,22 @@
 package com.example.wang.livedetectionapp;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.wang.livedetectionapp.Database.MyDatabaseHelper;
+import com.example.wang.livedetectionapp.common.AppManager;
+import com.example.wang.livedetectionapp.common.BaseActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     public static String mLogin;
     public static String mPassword;
@@ -107,5 +108,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            AppManager.finishAllActivity();
+        }
+        return false;
     }
 }

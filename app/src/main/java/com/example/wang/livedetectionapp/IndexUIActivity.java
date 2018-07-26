@@ -9,13 +9,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+
+import com.example.wang.livedetectionapp.common.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class IndexUIActivity extends AppCompatActivity {
+public class IndexUIActivity extends BaseActivity {
 
     private List<String> mTitles;
     private List<Fragment> mFragments;

@@ -2,12 +2,12 @@ package com.example.wang.livedetectionapp;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.wang.livedetectionapp.Database.MyDatabaseHelper;
+import com.example.wang.livedetectionapp.common.BaseActivity;
 
-public class FirstPageActivity extends AppCompatActivity {
+public class FirstPageActivity extends BaseActivity {
 
     private MyDatabaseHelper dbHelper;
     private String templogin;

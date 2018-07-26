@@ -27,10 +27,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.wang.livedetectionapp.Database.MyDatabaseHelper;
+import com.example.wang.livedetectionapp.common.BaseActivity;
 
 import java.io.InputStream;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
     public static final int GET_IMAGE = 1;
 
