@@ -4,7 +4,12 @@
     <string name="task_title">任务%1$d标题</string>
     <string name="status_completed">（已完成）</string>
     <string name="status_false">（未完成）</string>
-    
+
+    <array name="table_name">
+        <item>任务列表</item>
+        <item>我的信息</item>
+    </array>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -15,4 +20,5 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="title_activity_index_ui">IndexUIActivity</string>
 </resources>

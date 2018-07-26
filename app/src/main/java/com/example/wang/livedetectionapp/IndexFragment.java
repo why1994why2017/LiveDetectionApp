@@ -1,45 +1,48 @@
 package com.example.wang.livedetectionapp;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.GridView;
+import android.view.ViewGroup;
 
-import com.example.wang.livedetectionapp.adapter.GridViewAdapter;
 import com.example.wang.livedetectionapp.adapter.RecyclerViewAdapter;
-import com.example.wang.livedetectionapp.mode.ImageInfo;
 import com.example.wang.livedetectionapp.mode.MenuInfo;
-import com.example.wang.livedetectionapp.tool.NetManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class IndexActivity extends AppCompatActivity {
+public class IndexFragment extends Fragment {
+
+    private View mRootView;
 
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mRecyclerViewAdapter;
 
     private List<MenuInfo> mMenuInfos;
 
-    public static void startActivity(Context context) {
-        Intent intent = new Intent(context, IndexActivity.class);
-        context.startActivity(intent);
+    public static IndexFragment newInstance() {
+        IndexFragment indexFragment = new IndexFragment();
+        return indexFragment;
     }
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_index);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (mRootView == null) {
 
-        initMenuInfo();
-        initView();
-        initData();
+            mRootView = inflater.inflate(R.layout.fragment_index, container, false);
 
+            initMenuInfo();
+            initView();
+            initData();
+        }
+        return mRootView;
     }
 
     private void initMenuInfo() {
@@ -47,7 +50,7 @@ public class IndexActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mRecyclerView = findViewById(R.id.menu_recycler_view);
+        mRecyclerView = mRootView.findViewById(R.id.menu_recycler_view);
 
     }
 
@@ -66,8 +69,8 @@ public class IndexActivity extends AppCompatActivity {
         MenuInfo menuInfo4 = new MenuInfo(4, true);
         mMenuInfos.add(menuInfo4);
 
-        mRecyclerViewAdapter = new RecyclerViewAdapter(this, mMenuInfos);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerViewAdapter = new RecyclerViewAdapter(mRootView.getContext(), mMenuInfos);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRootView.getContext()));
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
     }
 }

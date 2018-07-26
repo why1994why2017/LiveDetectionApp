@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     values.clear();
                     String sql = "update info set id=1 where id<>1";
                     db.execSQL(sql);
-                    IndexActivity.startActivity(this);
+                    //IndexFragment.startActivity(this);
                 }
                 break;
             case R.id.main_register_button:
