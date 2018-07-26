@@ -24,7 +24,6 @@ public class AppManager {
         return mActivities.get(countActivity() - 1);
     }
 
-
     /**
      * 结束当前Activity（列表中最后一个压入的）
      */

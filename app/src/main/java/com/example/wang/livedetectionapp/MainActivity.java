@@ -98,12 +98,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     String sql1 = "insert into info(templogin) values(" + mLogin + ")";
                     db.execSQL(sql1);
                     IndexUIActivity.startActivity(this);
-                    finish();
+                    AppManager.finishCurrentActivity();
                 }
                 break;
             case R.id.main_register_button:
                 RegisterActivity.startActivity(this);
-                finish();
+                AppManager.finishCurrentActivity();
                 break;
             default:
                 break;
