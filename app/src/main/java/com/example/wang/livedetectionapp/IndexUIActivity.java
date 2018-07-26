@@ -1,5 +1,7 @@
 package com.example.wang.livedetectionapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -20,6 +22,11 @@ public class IndexUIActivity extends AppCompatActivity {
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
+
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, IndexUIActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +65,7 @@ public class IndexUIActivity extends AppCompatActivity {
         private List<String> mTitles;
         private List<Fragment> mFragments;
 
-        public ViewPagerAdapter(FragmentManager fm, List<String> titles, List<Fragment> fragments) {
+        private ViewPagerAdapter(FragmentManager fm, List<String> titles, List<Fragment> fragments) {
             super(fm);
             mTitles = titles;
             mFragments = fragments;

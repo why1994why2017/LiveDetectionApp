@@ -40,7 +40,7 @@ public class FirstPageActivity extends AppCompatActivity {
         if (templogin == null){
             MainActivity.startActivity(this);
         }else {
-            IndexActivity.startActivity(this);
+            IndexUIActivity.startActivity(this);
         }
     }
 }
