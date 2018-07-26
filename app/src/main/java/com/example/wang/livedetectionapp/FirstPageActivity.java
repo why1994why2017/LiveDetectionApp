@@ -40,8 +40,7 @@ public class FirstPageActivity extends AppCompatActivity {
         if (templogin == null){
             MainActivity.startActivity(this);
         }else {
-            //这个地方跳转任务列表
-            InformationActivity.startActivity(this);
+            IndexActivity.startActivity(this);
         }
     }
 }
