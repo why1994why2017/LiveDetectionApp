@@ -3,10 +3,12 @@ package com.example.wang.livedetectionapp;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -24,6 +26,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.wang.livedetectionapp.Database.MyDatabaseHelper;
+
 import java.io.InputStream;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,6 +44,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private ImageView mRegisterImage;
     public static String imagePath;
 
+    private MyDatabaseHelper dbHelper;
+
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, RegisterActivity.class);
         context.startActivity(intent);
@@ -51,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
         initView();
 
+        dbHelper = new MyDatabaseHelper(this, "InfoStore.db", null, 2);
     }
 
     private void initView() {
@@ -87,8 +94,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     MainActivity.mName = mNameText.getText().toString();
                     MainActivity.mGender = mGenderText.getText().toString();
 
-                    finish();
+                    SQLiteDatabase db = dbHelper.getWritableDatabase();
+                    ContentValues values = new ContentValues();
+                    values.put("loginnum", MainActivity.mLogin);
+                    values.put("passwords", MainActivity.mPassword);
+                    values.put("name", MainActivity.mName);
+                    values.put("gender", MainActivity.mGender);
+                    db.insert("info", null, values);
+                    values.clear();
                 }
+                MainActivity.startActivity(this);
+                finish();
                 break;
             case R.id.register_update_image:
                 if (ContextCompat.checkSelfPermission(RegisterActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){

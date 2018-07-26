@@ -41,9 +41,13 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
             case R.id.information_logout_button:
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 //db.delete("info", "templogin", )
-                String sql = "delete from info where id=1";
+                String sql = "delete from info where id<>0";
                 db.execSQL(sql);
-                MainActivity.startActivity(this);
+                Intent intent = new Intent();
+                //MainActivity.startActivity(this);
+                intent.setClass(InformationActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
                 break;
             default:

@@ -39,8 +39,10 @@ public class FirstPageActivity extends AppCompatActivity {
         cursor.close();
         if (templogin == null){
             MainActivity.startActivity(this);
+            finish();
         }else {
             IndexUIActivity.startActivity(this);
+            finish();
         }
     }
 }
