@@ -6,7 +6,11 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppManager {
+/**
+ *  Description: 调用finish()方法使用这个类中的方法
+ */
+
+public class AppUtil {
 
     private static List<BaseActivity> mActivities = new ArrayList<>();
 

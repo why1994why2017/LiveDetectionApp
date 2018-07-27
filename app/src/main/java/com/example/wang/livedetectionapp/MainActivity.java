@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.wang.livedetectionapp.Database.MyDatabaseHelper;
-import com.example.wang.livedetectionapp.common.AppManager;
+import com.example.wang.livedetectionapp.common.AppUtil;
 import com.example.wang.livedetectionapp.common.BaseActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -98,12 +98,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     String sql1 = "insert into info(templogin) values(" + mLogin + ")";
                     db.execSQL(sql1);
                     IndexUIActivity.startActivity(this);
-                    AppManager.finishCurrentActivity();
+                    AppUtil.finishCurrentActivity();
                 }
                 break;
             case R.id.main_register_button:
                 RegisterActivity.startActivity(this);
-                AppManager.finishCurrentActivity();
+                AppUtil.finishCurrentActivity();
                 break;
             default:
                 break;
@@ -113,7 +113,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            AppManager.finishAllActivity();
+            AppUtil.finishAllActivity();
         }
         return false;
     }

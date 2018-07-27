@@ -2,6 +2,13 @@ package com.example.wang.livedetectionapp.common;
 
 import android.util.Log;
 
+
+/**
+ *  Description: 日志系统
+ *               所有的日志都要使用这个类中的
+ *               能统一管理
+ */
+
 public class LogUtil {
     public static final int VERBOSE = 1;
     public static final int DEBUG = 2;
