@@ -7,14 +7,9 @@ import android.widget.Toast;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }*/
-
     public static final String CREATE_INFO = "create table info("
             +"id integer primary key autoincrement, "
-            +"loginnum text, "
+            +"login_name text, "
             +"passwords text, "
             +"name text, "
             +"gender text, "

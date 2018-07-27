@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.wang.livedetectionapp.common.AppUtil;
 import com.example.wang.livedetectionapp.common.BaseActivity;
 import com.example.wang.livedetectionapp.mode.DetailInfo;
 import com.example.wang.livedetectionapp.tool.NetManager;
@@ -81,7 +82,7 @@ public class DetailActivity extends BaseActivity {
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                AppUtil.finishCurrentActivity();
             }
         });
     }

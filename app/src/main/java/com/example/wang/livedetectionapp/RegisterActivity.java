@@ -18,7 +18,6 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,16 +25,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.wang.livedetectionapp.Database.DatabaseManager;
 import com.example.wang.livedetectionapp.Database.MyDatabaseHelper;
+import com.example.wang.livedetectionapp.common.AppUtil;
 import com.example.wang.livedetectionapp.common.BaseActivity;
-
-import java.io.InputStream;
+import com.example.wang.livedetectionapp.mode.PersonInfo;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
     public static final int GET_IMAGE = 1;
-
-
 
     private EditText mLoginText;
     private EditText mPasswordText;
@@ -45,7 +43,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private ImageView mRegisterImage;
     public static String imagePath;
 
-    private MyDatabaseHelper dbHelper;
+    private PersonInfo mPersonInfo;
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, RegisterActivity.class);
@@ -58,7 +56,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_register);
         initView();
 
-        dbHelper = new MyDatabaseHelper(this, "InfoStore.db", null, 2);
     }
 
     private void initView() {
@@ -73,16 +70,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         mRegisterImage = findViewById(R.id.register_update_image);
         mRegisterImage.setOnClickListener(this);
 
-        /*mResiterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mLoginText.getText().length() > 0 && mPasswordText.getText().length() > 0 && mNameText.getText().length() > 0 && mGenderText.getText().length() > 0) {
-                    MainActivity.mLogin = mLoginText.getText().toString();
-                    MainActivity.mPassword = mPasswordText.getText().toString();
-                    finish();
-                }
-            }
-        });*/
     }
 
     @Override
@@ -90,30 +77,30 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.register_button:
                 if (mLoginText.getText().length() > 0 && mPasswordText.getText().length() > 0 && mNameText.getText().length() > 0 && mGenderText.getText().length() > 0) {
-                    MainActivity.mLogin = mLoginText.getText().toString();
-                    MainActivity.mPassword = mPasswordText.getText().toString();
-                    MainActivity.mName = mNameText.getText().toString();
-                    MainActivity.mGender = mGenderText.getText().toString();
+                    mPersonInfo.setLoginName(mLoginText.getText().toString());
+                    mPersonInfo.setPassword(mPasswordText.getText().toString());
+                    mPersonInfo.setPersonName(mNameText.getText().toString());
+                    mPersonInfo.setGender(mGenderText.getText().toString());
 
-                    SQLiteDatabase db = dbHelper.getWritableDatabase();
-                    ContentValues values = new ContentValues();
-                    values.put("loginnum", MainActivity.mLogin);
-                    values.put("passwords", MainActivity.mPassword);
-                    values.put("name", MainActivity.mName);
-                    values.put("gender", MainActivity.mGender);
-                    db.insert("info", null, values);
-                    values.clear();
+                    DatabaseManager.insertPersonInfo(this, mPersonInfo);
+
                 }
-                MainActivity.startActivity(this);
-                finish();
+                MainActivity.startActivity(this, mPersonInfo);
+                AppUtil.finishCurrentActivity();
                 break;
+
             case R.id.register_update_image:
-                if (ContextCompat.checkSelfPermission(RegisterActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(RegisterActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                }else {
+
+                if (ContextCompat.checkSelfPermission(RegisterActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(RegisterActivity.this,
+                            new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                            1);
+                } else {
                     openAlbum();
                 }
                 break;
+
             default:
                 break;
         }
@@ -209,7 +196,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case GET_IMAGE:
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     openAlbum();
                 } else {
                     Toast.makeText(this, "You denied the permission", Toast.LENGTH_SHORT).show();
