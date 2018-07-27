@@ -66,5 +66,9 @@ fastlane/readme.md
 
 #custome
 .idea/misc.xml
+<<<<<<< HEAD
 .properties
+=======
+gradle.properties
+>>>>>>> ee30e32c144e70ef1c40b95303618a4cc5f7095e
 
