@@ -39,6 +39,11 @@ public class IndexUIActivity extends BaseActivity {
 
     }
 
+    private void initView() {
+        mTabLayout = findViewById(R.id.index_tab_layout);
+        mViewPager = findViewById(R.id.index_view_page);
+    }
+
     private void initData() {
         mTitles = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.table_name)));
         mFragments = new ArrayList<>();
@@ -48,12 +53,6 @@ public class IndexUIActivity extends BaseActivity {
         setFragments(mTitles, mFragments);
 
     }
-
-    private void initView() {
-        mTabLayout = findViewById(R.id.index_tab_layout);
-        mViewPager = findViewById(R.id.index_view_page);
-    }
-
 
     private void setFragments(List<String> titles, List<Fragment> fragments) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), titles, fragments);
