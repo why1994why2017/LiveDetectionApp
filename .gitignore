@@ -65,6 +65,6 @@ fastlane/test_output
 fastlane/readme.md
 
 #custome
-.deal/misc.xml
-.properties
+.idea/misc.xml
+gradle.properties
 

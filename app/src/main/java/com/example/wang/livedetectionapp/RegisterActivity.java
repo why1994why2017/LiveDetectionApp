@@ -3,12 +3,10 @@ package com.example.wang.livedetectionapp;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -26,7 +24,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.wang.livedetectionapp.Database.DatabaseManager;
-import com.example.wang.livedetectionapp.Database.MyDatabaseHelper;
 import com.example.wang.livedetectionapp.common.AppUtil;
 import com.example.wang.livedetectionapp.common.BaseActivity;
 import com.example.wang.livedetectionapp.mode.PersonInfo;
@@ -43,7 +40,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private ImageView mRegisterImage;
     public static String imagePath;
 
-    private PersonInfo mPersonInfo;
+    PersonInfo mPersonInfo;
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, RegisterActivity.class);
@@ -54,11 +51,12 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        initView();
 
+        initView();
     }
 
     private void initView() {
+
         mLoginText = findViewById(R.id.register_login_text);
         mPasswordText = findViewById(R.id.register_password_text);
         mNameText = findViewById(R.id.register_name_text);
@@ -75,31 +73,34 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.register_button:
+            case R.id.register_button: {
                 if (mLoginText.getText().length() > 0 && mPasswordText.getText().length() > 0 && mNameText.getText().length() > 0 && mGenderText.getText().length() > 0) {
+
+                    mPersonInfo = new PersonInfo();
                     mPersonInfo.setLoginName(mLoginText.getText().toString());
                     mPersonInfo.setPassword(mPasswordText.getText().toString());
                     mPersonInfo.setPersonName(mNameText.getText().toString());
                     mPersonInfo.setGender(mGenderText.getText().toString());
 
-                    DatabaseManager.insertPersonInfo(this, mPersonInfo);
+                    DatabaseManager.insertPersonInfo(mPersonInfo);
 
                 }
                 MainActivity.startActivity(this, mPersonInfo);
                 AppUtil.finishCurrentActivity();
                 break;
+            }
 
-            case R.id.register_update_image:
-
+            case R.id.register_update_image: {
                 if (ContextCompat.checkSelfPermission(RegisterActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(RegisterActivity.this,
-                            new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                             1);
                 } else {
                     openAlbum();
                 }
                 break;
+            }
 
             default:
                 break;
@@ -178,7 +179,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             //从相册获得图片
-            case GET_IMAGE:
+            case GET_IMAGE: {
                 if (resultCode == RESULT_OK) {
                     if (Build.VERSION.SDK_INT >= 19) {
                         handleImageOnKitKat(data);
@@ -186,6 +187,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         handleImageBeforeKitKat(data);
                     }
                 }
+                break;
+            }
+
             default:
                 break;
         }
@@ -195,13 +199,15 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
-            case GET_IMAGE:
+            case GET_IMAGE: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     openAlbum();
                 } else {
                     Toast.makeText(this, "You denied the permission", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            }
+
             default:
                 break;
         }

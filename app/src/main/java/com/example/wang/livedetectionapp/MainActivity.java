@@ -2,17 +2,14 @@ package com.example.wang.livedetectionapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.wang.livedetectionapp.Database.MyDatabaseHelper;
+import com.example.wang.livedetectionapp.Database.DatabaseManager;
 import com.example.wang.livedetectionapp.common.AppUtil;
 import com.example.wang.livedetectionapp.common.BaseActivity;
 import com.example.wang.livedetectionapp.mode.PersonInfo;
@@ -63,26 +60,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.login_button:
-
+            case R.id.login_button:{
                 if (mLoginTest.getText().toString() == null || mPasswordTest.getText().toString() == null) {
                     break;
                 }
 
-                /*if (mLoginTest.getText().toString().equals(temploginnum) && mPasswordTest.getText().toString().equals(temppasswords)) {
-                    SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-                    String sql1 = "insert into info(templogin) values(" + mLogin + ")";
-                    db.execSQL(sql1);
-                    IndexUIActivity.startActivity(this);
-                    AppUtil.finishCurrentActivity();
-                }*/
-
+                if (mPersonInfo != null) {
+                    if (mLoginTest.getText().toString().equals(mPersonInfo.getLoginName())
+                            && mPasswordTest.getText().toString().equals(mPersonInfo.getPassword())) {
+                        IndexUIActivity.startActivity(this);
+                        AppUtil.finishCurrentActivity();
+                    }
+                } else {
+                    PersonInfo personInfo = DatabaseManager.getPersonInfo();
+                    if (personInfo != null) {
+                        if (mLoginTest.getText().toString().equals(personInfo.getLoginName())
+                                && mPasswordTest.getText().toString().equals(personInfo.getPassword())) {
+                            IndexUIActivity.startActivity(this);
+                            AppUtil.finishCurrentActivity();
+                        }
+                    }
+                }
                 break;
-            case R.id.main_register_button:
+            }
+
+            case R.id.main_register_button: {
                 RegisterActivity.startActivity(this);
                 AppUtil.finishCurrentActivity();
                 break;
+            }
+
             default:
                 break;
         }
