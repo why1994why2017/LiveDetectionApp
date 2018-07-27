@@ -5,18 +5,19 @@ import android.os.Parcelable;
 
 public class PersonInfo implements Parcelable {
 
-    private String mLoginName;
+    private String loginName;
     private String mPassword;
-    private String mPersonName;
-    private String mGender;
+
+    private String personName;
+    private String gender;
 
     public PersonInfo(){}
 
     protected PersonInfo(Parcel in) {
-        mLoginName = in.readString();
+        loginName = in.readString();
         mPassword = in.readString();
-        mPersonName = in.readString();
-        mGender = in.readString();
+        personName = in.readString();
+        gender = in.readString();
     }
 
     public static final Parcelable.Creator<PersonInfo> CREATOR = new Parcelable.Creator<PersonInfo>() {
@@ -32,11 +33,11 @@ public class PersonInfo implements Parcelable {
     };
 
     public String getLoginName() {
-        return mLoginName;
+        return loginName;
     }
 
-    public void setLoginName(String mLoginName) {
-        mLoginName = mLoginName;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 
     public String getPassword() {
@@ -44,23 +45,23 @@ public class PersonInfo implements Parcelable {
     }
 
     public void setPassword(String password) {
-        mPassword = password;
+        this.mPassword = password;
     }
 
     public String getPersonName() {
-        return mPersonName;
+        return personName;
     }
 
     public void setPersonName(String personName) {
-        mPersonName = personName;
+        this.personName = personName;
     }
 
     public String getGender() {
-        return mGender;
+        return gender;
     }
 
     public void setGender(String gender) {
-        mGender = gender;
+        this.gender = gender;
     }
 
     @Override
@@ -70,9 +71,9 @@ public class PersonInfo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mLoginName);
+        dest.writeString(loginName);
         dest.writeString(mPassword);
-        dest.writeString(mPersonName);
-        dest.writeString(mGender);
+        dest.writeString(personName);
+        dest.writeString(gender);
     }
 }

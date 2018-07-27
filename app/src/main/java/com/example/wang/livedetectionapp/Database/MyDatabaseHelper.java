@@ -11,17 +11,21 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             +"id integer primary key autoincrement, "
             +"login_name text, "
             +"passwords text, "
-            +"person_name text, "
+            +"name text, "
             +"gender text, "
-            +"temp_login text)";
+            +"templogin text)";
+
+    private Context mContext;
 
     public MyDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, name, factory, version);
+        mContext = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_INFO);
+        //Toast.makeText(mContext, "Create succeeded", Toast.LENGTH_SHORT).show();
     }
 
     @Override

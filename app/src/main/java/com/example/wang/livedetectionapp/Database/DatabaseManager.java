@@ -13,27 +13,16 @@ import com.example.wang.livedetectionapp.mode.PersonInfo;
 
 public class DatabaseManager {
 
-    private static final int DATABASE_VERSION = 1;
-
-    //全局只应该保留一个，为了防止多线程死锁。不要close
-    private static MyDatabaseHelper mDatabaseHelper;
-    private static SQLiteDatabase db;
-
-    public static void createDatabase(Context context) {
-        if (mDatabaseHelper == null && db == null) {
-            mDatabaseHelper = new MyDatabaseHelper(context, "InfoStore.db", null, DATABASE_VERSION);
-            db = mDatabaseHelper.getWritableDatabase();
-        }
-    }
-
-    public static String getTempLogin() {
+    public static String getTempLogin(Context context) {
 
         String tempLogin = null;
+        MyDatabaseHelper dbHelper = new MyDatabaseHelper(context, "InfoStore.db", null, 2);
 
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursor = db.query("info", null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                tempLogin = cursor.getString(cursor.getColumnIndex("temp_login"));
+                tempLogin = cursor.getString(cursor.getColumnIndex("tempLogin"));
                 if (tempLogin != null)
                     break;
             } while (cursor.moveToNext());
@@ -43,37 +32,41 @@ public class DatabaseManager {
         return tempLogin;
     }
 
-    public static void insertPersonInfo(PersonInfo personInfo) {
-
+    public static void insertPersonInfo(Context context, PersonInfo personInfo) {
+        MyDatabaseHelper dbHelper = new MyDatabaseHelper(context, "InfoStore.db", null, 2);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("login_name", personInfo.getLoginName());
         values.put("passwords", personInfo.getPassword());
-        values.put("person_name", personInfo.getPersonName());
+        values.put("name", personInfo.getPersonName());
         values.put("gender", personInfo.getGender());
         db.insert("info", null, values);
         values.clear();
     }
 
-    public static PersonInfo getPersonInfo() {
+    public static PersonInfo getPersonInfo(Context context) {
 
         PersonInfo personInfo = new PersonInfo();
-
+        MyDatabaseHelper dbHelper;
+        dbHelper = new MyDatabaseHelper(context, "InfoStore.db", null, 2);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursor = db.query("info", null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
                 personInfo.setLoginName(cursor.getString(cursor.getColumnIndex("login_name")));
                 personInfo.setPassword(cursor.getString(cursor.getColumnIndex("passwords")));
-                personInfo.setPersonName(cursor.getString(cursor.getColumnIndex("person_name")));
+                personInfo.setLoginName(cursor.getString(cursor.getColumnIndex("name")));
                 personInfo.setGender(cursor.getString(cursor.getColumnIndex("gender")));
 
-                if (personInfo.getLoginName() == null || personInfo.getPassword() == null) {
+                if (personInfo.getLoginName() != null && personInfo.getPassword() != null)
                     return null;
-                }
 
             } while (cursor.moveToNext());
         }
         cursor.close();
+
         return personInfo;
+
     }
 
 }

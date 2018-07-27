@@ -13,18 +13,14 @@ public class FirstPageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firstpage);
 
-        DatabaseManager.createDatabase(this);
+        String tempLogin = DatabaseManager.getTempLogin(this);
 
-        String tempLogin = DatabaseManager.getTempLogin();
-
-        if (tempLogin == null) {
+        if (tempLogin == null){
             MainActivity.startActivity(this);
             AppUtil.finishCurrentActivity();
-
-        } else {
+        }else {
             IndexUIActivity.startActivity(this);
             AppUtil.finishCurrentActivity();
-
         }
     }
 

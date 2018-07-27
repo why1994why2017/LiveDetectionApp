@@ -14,6 +14,7 @@ import com.example.wang.livedetectionapp.common.BaseActivity;
 public class InformationActivity extends BaseActivity implements View.OnClickListener{
 
     private Button mLogoutButton;
+    private MyDatabaseHelper dbHelper;
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, InformationActivity.class);
@@ -26,6 +27,8 @@ public class InformationActivity extends BaseActivity implements View.OnClickLis
         setContentView(R.layout.activity_imformation);
 
         initView();
+
+        dbHelper = new MyDatabaseHelper(this, "InfoStore.db", null, 2);
     }
 
     private void initView() {
@@ -37,7 +40,15 @@ public class InformationActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.information_logout_button:
-                MainActivity.startActivity(this);
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                //db.delete("info", "templogin", )
+                String sql = "delete from info where id<>0";
+                db.execSQL(sql);
+                Intent intent = new Intent();
+                //MainActivity.startActivity(this);
+                intent.setClass(InformationActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 break;
             default:
                 break;
