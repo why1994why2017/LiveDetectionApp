@@ -65,6 +65,6 @@ fastlane/test_output
 fastlane/readme.md
 
 #custome
-.deal/misc.xml
+.idea/misc.xml
 .properties
 
