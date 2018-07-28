@@ -1,6 +1,5 @@
 package com.example.wang.livedetectionapp.tool;
 
-import com.example.wang.livedetectionapp.mode.DetailInfo;
 import com.example.wang.livedetectionapp.mode.MenuInfo;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

@@ -61,12 +61,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
 
-        <!--<ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/login" />-->
-
         <TextView
             android:id="@+id/information_identify_text"
             android:layout_marginStart="20dp"

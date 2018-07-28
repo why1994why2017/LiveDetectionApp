@@ -16,12 +16,12 @@ import com.example.wang.livedetectionapp.mode.MenuInfo;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerViewAdapter.ViewHolder> {
 
     private Context mContext;
     private List<MenuInfo> mMenuInfos;
 
-    public RecyclerViewAdapter (Context context, List<MenuInfo> menuInfos) {
+    public MenuRecyclerViewAdapter(Context context, List<MenuInfo> menuInfos) {
         mContext = context;
         mMenuInfos = menuInfos;
     }

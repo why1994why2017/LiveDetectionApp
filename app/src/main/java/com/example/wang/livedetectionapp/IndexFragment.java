@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.wang.livedetectionapp.adapter.RecyclerViewAdapter;
+import com.example.wang.livedetectionapp.adapter.MenuRecyclerViewAdapter;
 import com.example.wang.livedetectionapp.mode.MenuInfo;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class IndexFragment extends Fragment {
     private View mRootView;
 
     private RecyclerView mRecyclerView;
-    private RecyclerViewAdapter mRecyclerViewAdapter;
+    private MenuRecyclerViewAdapter mMenuRecyclerViewAdapter;
 
     private List<MenuInfo> mMenuInfos;
 
@@ -69,8 +69,8 @@ public class IndexFragment extends Fragment {
         MenuInfo menuInfo4 = new MenuInfo(4, true);
         mMenuInfos.add(menuInfo4);
 
-        mRecyclerViewAdapter = new RecyclerViewAdapter(mRootView.getContext(), mMenuInfos);
+        mMenuRecyclerViewAdapter = new MenuRecyclerViewAdapter(mRootView.getContext(), mMenuInfos);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mRootView.getContext()));
-        mRecyclerView.setAdapter(mRecyclerViewAdapter);
+        mRecyclerView.setAdapter(mMenuRecyclerViewAdapter);
     }
 }
