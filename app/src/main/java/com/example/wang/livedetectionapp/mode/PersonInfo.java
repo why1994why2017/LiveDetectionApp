@@ -35,8 +35,8 @@ public class PersonInfo implements Parcelable {
         return mLoginName;
     }
 
-    public void setLoginName(String mLoginName) {
-        mLoginName = mLoginName;
+    public void setLoginName(String loginName) {
+        mLoginName = loginName;
     }
 
     public String getPassword() {

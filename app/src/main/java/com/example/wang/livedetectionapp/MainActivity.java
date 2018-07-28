@@ -9,9 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bumptech.glide.util.Util;
 import com.example.wang.livedetectionapp.Database.DatabaseManager;
 import com.example.wang.livedetectionapp.common.AppUtil;
 import com.example.wang.livedetectionapp.common.BaseActivity;
+import com.example.wang.livedetectionapp.common.LogUtil;
 import com.example.wang.livedetectionapp.mode.PersonInfo;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -64,7 +66,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (mLoginTest.getText().toString() == null || mPasswordTest.getText().toString() == null) {
                     break;
                 }
-
+                //LogUtil.e("------------------------>", ""+mPersonInfo.getLoginName()+"--------------------->"+mPersonInfo.getPassword());
                 if (mPersonInfo != null) {
                     if (mLoginTest.getText().toString().equals(mPersonInfo.getLoginName())
                             && mPasswordTest.getText().toString().equals(mPersonInfo.getPassword())) {
