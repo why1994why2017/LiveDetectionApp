@@ -39,7 +39,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".InformationActivity" />
         <activity android:name=".IndexUIActivity" />
-        <activity android:name=".LiveMethodActivity" />
+        <activity android:name=".LiveMethodActivity"
+            android:launchMode="singleInstance"/>
 
     </application>
 

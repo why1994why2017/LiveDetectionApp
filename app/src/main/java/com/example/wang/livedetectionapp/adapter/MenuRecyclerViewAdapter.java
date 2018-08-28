@@ -22,6 +22,8 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
     private Context mContext;
     private List<MenuInfo> mMenuInfos;
 
+    public static int LiveMethodTimes = 1;
+
     public MenuRecyclerViewAdapter(Context context, List<MenuInfo> menuInfos) {
         mContext = context;
         mMenuInfos = menuInfos;

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,8 +14,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
+import com.example.wang.livedetectionapp.adapter.MenuRecyclerViewAdapter;
 import com.example.wang.livedetectionapp.common.AppUtil;
 import com.example.wang.livedetectionapp.common.BaseActivity;
+import com.example.wang.livedetectionapp.common.LogUtil;
 import com.tzutalin.dlib.CameraActivity;
 
 import java.util.ArrayList;
@@ -56,6 +59,7 @@ public class LiveMethodActivity extends BaseActivity {
             String[] permissions = permissionList.toArray(new String[permissionList.
                     size()]);
             ActivityCompat.requestPermissions(activity, permissions, 1);
+            //ActivityCompat.requestPermissions(activity, PERMISSIONS_REQ, 1);
             return false;
         } else {
             return true;
@@ -124,8 +128,6 @@ public class LiveMethodActivity extends BaseActivity {
                 startActivityForResult(intent, 11);
             }
         }
-
-
     }
 
     @Override
@@ -133,9 +135,38 @@ public class LiveMethodActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 11 && resultCode == -1) {
-            Toast.makeText(this, "人脸识别成功", Toast.LENGTH_SHORT).show();
-            IndexUIActivity.startActivity(this);
+            Toast.makeText(this, "检测到活体", Toast.LENGTH_SHORT).show();
+            //IndexUIActivity.startActivity(this);
             AppUtil.finishCurrentActivity();
+        }
+    }
+
+
+    /*public boolean hasPermission(String permission) {
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(this.getPackageName(), PackageManager.GET_PERMISSIONS);
+            if (info.requestedPermissions != null) {
+                for (String p : info.requestedPermissions) {
+                    if (p.equals(permission)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }*/
+    public boolean hasPermission(String permission){
+        PackageManager pm = getPackageManager();
+        boolean flag = (PackageManager.PERMISSION_GRANTED ==
+                pm.checkPermission(permission, "packageName"));
+        if (flag) {
+            //有这个权限，做相应处理
+            return true;
+        }else {
+            //没有权限
+            return false;
         }
     }
 
@@ -143,8 +174,27 @@ public class LiveMethodActivity extends BaseActivity {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
         switch (requestCode) {
             case 1:
-                IndexUIActivity.startActivity(this);
-                AppUtil.currentActivity();
+                if (grantResults.length > 0){
+                    //for (int result : grantResults) {
+                        //if (result != PackageManager.PERMISSION_GRANTED) {
+                            //Toast.makeText(this, "必须同意所有权限才能使用本程序", Toast.LENGTH_SHORT).show();
+                            if ( hasPermission("android.permission.WRITE_EXTERNAL_STORAGE") && hasPermission("android.permission.CAMERA") ){
+                                if (MenuRecyclerViewAdapter.LiveMethodTimes == 1) {
+                                    MenuRecyclerViewAdapter.LiveMethodTimes++;
+                                    AppUtil.finishCurrentActivity();
+                                    LiveMethodActivity.startActivity(this);
+                                }
+                            }else {
+                                AppUtil.finishCurrentActivity();
+                                Toast.makeText(this, "必须同意所有权限才能使用本程序", Toast.LENGTH_SHORT).show();
+                            }
+                            //AppUtil.finishCurrentActivity();
+                            //LiveMethodActivity.startActivity(this);
+                        //}
+                    //}
+                }else {
+                    Toast.makeText(this, "发生未知错误", Toast.LENGTH_SHORT).show();
+                }
                 break;
             default:
                 break;
