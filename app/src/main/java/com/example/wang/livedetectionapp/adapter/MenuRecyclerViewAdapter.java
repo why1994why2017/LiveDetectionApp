@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.wang.livedetectionapp.LiveMethodActivity;
 import com.example.wang.livedetectionapp.R;
 import com.example.wang.livedetectionapp.mode.MenuInfo;
 

@@ -1,4 +1,4 @@
-package com.example.wang.livedetectionapp.adapter;
+package com.example.wang.livedetectionapp;
 
 import android.Manifest;
 import android.app.Activity;
