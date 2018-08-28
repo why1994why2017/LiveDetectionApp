@@ -103,8 +103,7 @@ public class LiveMethodActivity extends BaseActivity {
 
         if (currentapiVersion >= Build.VERSION_CODES.M) {
             if (verifyPermissions(this)) {
-                Intent intent = new Intent(LiveMethodActivity.this, CameraActivity.class);
-                startActivityForResult(intent, ACTIVITY_CODE_CAMERA);
+                openCamera();
             }
         }
     }
@@ -132,7 +131,7 @@ public class LiveMethodActivity extends BaseActivity {
                         }
                     }
                     AppUtil.finishCurrentActivity();
-                    LiveMethodActivity.startActivity(this);
+                    openCamera();
                 }else {
                     Toast.makeText(this, "发生未知错误", Toast.LENGTH_SHORT).show();
                 }
@@ -140,6 +139,11 @@ public class LiveMethodActivity extends BaseActivity {
             default:
                 break;
         }
+    }
+
+    private void openCamera() {
+        Intent intent = new Intent(LiveMethodActivity.this, CameraActivity.class);
+        startActivityForResult(intent, ACTIVITY_CODE_CAMERA);
     }
 
 }
