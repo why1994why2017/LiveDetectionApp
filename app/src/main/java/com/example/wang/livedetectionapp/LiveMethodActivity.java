@@ -88,15 +88,18 @@ public class LiveMethodActivity extends BaseActivity {
         int currentapiVersion = Build.VERSION.SDK_INT;
 
         if (currentapiVersion >= Build.VERSION_CODES.M) {
-            verifyPermissions(this);
+            if ( verifyPermissions(this) )
+            {
+                // Just use hugo to print log
+                isExternalStorageWritable();
+                isExternalStorageReadable();
+
+                Intent intent = new Intent(LiveMethodActivity.this,CameraActivity.class);
+                startActivityForResult(intent,11);
+            }
         }
 
-        // Just use hugo to print log
-        isExternalStorageWritable();
-        isExternalStorageReadable();
 
-        Intent intent = new Intent(LiveMethodActivity.this,CameraActivity.class);
-        startActivityForResult(intent,11);
     }
 
     @Override
