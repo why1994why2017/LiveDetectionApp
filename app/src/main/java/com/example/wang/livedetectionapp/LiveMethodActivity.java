@@ -132,26 +132,23 @@ public class LiveMethodActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == 11 && resultCode == -1) {
+            Toast.makeText(this, "人脸识别成功", Toast.LENGTH_SHORT).show();
+            IndexUIActivity.startActivity(this);
+            AppUtil.finishCurrentActivity();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
         switch (requestCode) {
             case 1:
                 IndexUIActivity.startActivity(this);
                 AppUtil.currentActivity();
                 break;
-            case 11:
-                if (resultCode == -1){
-                    Toast.makeText(this, "检测到活体", Toast.LENGTH_SHORT).show();
-                    IndexUIActivity.startActivity(this);
-                    AppUtil.finishCurrentActivity();
-                }
             default:
                 break;
         }
-
-        /*if (requestCode == 11 && resultCode == -1) {
-            Toast.makeText(this, "人脸识别成功", Toast.LENGTH_SHORT).show();
-            IndexUIActivity.startActivity(this);
-            AppUtil.finishCurrentActivity();
-        }*/
     }
 
 }
