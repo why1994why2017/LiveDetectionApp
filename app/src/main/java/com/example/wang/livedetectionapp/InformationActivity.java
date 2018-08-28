@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.example.wang.livedetectionapp.Database.MyDatabaseHelper;
 import com.example.wang.livedetectionapp.common.BaseActivity;
 
-public class InformationActivity extends BaseActivity implements View.OnClickListener{
+public class InformationActivity extends BaseActivity implements View.OnClickListener {
 
     private Button mLogoutButton;
 
@@ -35,7 +35,7 @@ public class InformationActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.information_logout_button:
                 MainActivity.startActivity(this);
                 break;

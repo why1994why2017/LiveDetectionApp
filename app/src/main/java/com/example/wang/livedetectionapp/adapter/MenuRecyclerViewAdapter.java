@@ -48,11 +48,11 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
         holder.mMenuImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if (holder.mDetailLayout.getVisibility() == View.GONE) {
-                   holder.mDetailLayout.setVisibility(View.VISIBLE);
-               } else {
-                   holder.mDetailLayout.setVisibility(View.GONE);
-               }
+                if (holder.mDetailLayout.getVisibility() == View.GONE) {
+                    holder.mDetailLayout.setVisibility(View.VISIBLE);
+                } else {
+                    holder.mDetailLayout.setVisibility(View.GONE);
+                }
             }
         });
 

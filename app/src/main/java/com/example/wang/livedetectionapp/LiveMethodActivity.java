@@ -99,9 +99,7 @@ public class LiveMethodActivity extends BaseActivity {
         isExternalStorageReadable();
 
         // For API 23+ you need to request the read/write permissions even if they are already in your manifest.
-        int currentapiVersion = Build.VERSION.SDK_INT;
-
-        if (currentapiVersion >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (verifyPermissions(this)) {
                 openCamera();
             }
@@ -119,10 +117,10 @@ public class LiveMethodActivity extends BaseActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case REQUEST_CODE_PERMISSION:
-                if (grantResults.length > 0){
+                if (grantResults.length > 0) {
                     for (int result : grantResults) {
                         if (result != PackageManager.PERMISSION_GRANTED) {
                             Toast.makeText(this, "必须同意所有权限才能使用本程序", Toast.LENGTH_SHORT).show();
@@ -132,7 +130,7 @@ public class LiveMethodActivity extends BaseActivity {
                     }
                     AppUtil.finishCurrentActivity();
                     openCamera();
-                }else {
+                } else {
                     Toast.makeText(this, "发生未知错误", Toast.LENGTH_SHORT).show();
                 }
                 break;
