@@ -32,7 +32,9 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
         if (mContext == null) {
             mContext = parent.getContext();
         }
+
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_menu_recycler_view, parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -52,6 +54,15 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
                }
             }
         });
+
+        //调用库中活体检测功能
+        holder.mCameraImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LiveMethodActivity.startActivity(mContext);
+            }
+        });
+
         String title = String.format(mContext.getResources().getString(R.string.task_title), menuInfo.getTitle());
         holder.mTitleText.setText(title);
 
@@ -70,6 +81,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
         TextView mStatusText;
         ImageView mMenuImageView;
         LinearLayout mDetailLayout;
+        ImageView mCameraImage;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -77,6 +89,8 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
             mStatusText = itemView.findViewById(R.id.menu_status_text);
             mMenuImageView = itemView.findViewById(R.id.menu_image_view);
             mDetailLayout = itemView.findViewById(R.id.menu_detail_layout);
+            mCameraImage = itemView.findViewById(R.id.fragment_remark_image);
         }
     }
+
 }
