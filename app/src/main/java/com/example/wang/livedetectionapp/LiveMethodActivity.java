@@ -10,16 +10,20 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
+import com.example.wang.livedetectionapp.common.AppUtil;
 import com.example.wang.livedetectionapp.common.BaseActivity;
 import com.tzutalin.dlib.CameraActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LiveMethodActivity extends BaseActivity {
 
 
-
-    private static final int REQUEST_CODE_PERMISSION  =2;
+    private static final int REQUEST_CODE_PERMISSION = 2;
 
     // 权限请求
     private static String[] PERMISSIONS_REQ = {
@@ -34,8 +38,32 @@ public class LiveMethodActivity extends BaseActivity {
      * 如果该应用程序没有权限，则会提示用户授予权限
      */
     private static boolean verifyPermissions(Activity activity) {
+
+        List<String> permissionList = new ArrayList<>();
+        if (ContextCompat.checkSelfPermission(activity, Manifest.
+                permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (ContextCompat.checkSelfPermission(activity, Manifest.
+                permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (ContextCompat.checkSelfPermission(activity, Manifest.
+                permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.CAMERA);
+        }
+        if (!permissionList.isEmpty()) {
+            String[] permissions = permissionList.toArray(new String[permissionList.
+                    size()]);
+            ActivityCompat.requestPermissions(activity, permissions, 1);
+            return false;
+        } else {
+            return true;
+            //申请权限后进行操作
+        }
+
         // 检测是否有如下权限
-        int write_permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        /*int write_permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int read_persmission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int camera_permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA);
 
@@ -51,7 +79,7 @@ public class LiveMethodActivity extends BaseActivity {
             return false;
         } else {
             return true;
-        }
+        }*/
     }
 
     /* 检查外部存储是否可用于读取和写入*/
@@ -74,7 +102,7 @@ public class LiveMethodActivity extends BaseActivity {
     }
 
 
-    public static void startActivity(Context context){
+    public static void startActivity(Context context) {
         Intent intent = new Intent(context, LiveMethodActivity.class);
         context.startActivity(intent);
     }
@@ -83,19 +111,17 @@ public class LiveMethodActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Just use hugo to print log
+        isExternalStorageWritable();
+        isExternalStorageReadable();
 
         // For API 23+ you need to request the read/write permissions even if they are already in your manifest.
         int currentapiVersion = Build.VERSION.SDK_INT;
 
         if (currentapiVersion >= Build.VERSION_CODES.M) {
-            if ( verifyPermissions(this) )
-            {
-                // Just use hugo to print log
-                isExternalStorageWritable();
-                isExternalStorageReadable();
-
-                Intent intent = new Intent(LiveMethodActivity.this,CameraActivity.class);
-                startActivityForResult(intent,11);
+            if (verifyPermissions(this)) {
+                Intent intent = new Intent(LiveMethodActivity.this, CameraActivity.class);
+                startActivityForResult(intent, 11);
             }
         }
 
@@ -105,9 +131,27 @@ public class LiveMethodActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 11 && resultCode == -1){
-            Toast.makeText(this, "人脸识别成功", Toast.LENGTH_SHORT).show();
+
+        switch (requestCode) {
+            case 1:
+                IndexUIActivity.startActivity(this);
+                AppUtil.currentActivity();
+                break;
+            case 11:
+                if (resultCode == -1){
+                    Toast.makeText(this, "检测到活体", Toast.LENGTH_SHORT).show();
+                    IndexUIActivity.startActivity(this);
+                    AppUtil.finishCurrentActivity();
+                }
+            default:
+                break;
         }
+
+        /*if (requestCode == 11 && resultCode == -1) {
+            Toast.makeText(this, "人脸识别成功", Toast.LENGTH_SHORT).show();
+            IndexUIActivity.startActivity(this);
+            AppUtil.finishCurrentActivity();
+        }*/
     }
 
 }
